@@ -1,0 +1,22 @@
+
+<a (click)="openModal(template)" >{{  buttonText }}</a>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ bigTitle }}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <h3>{{ title }}</h3>
+    <span class="text-muted">{{ description }}</span>
+
+    <div class="options">
+      <button (click)="yes()" class="btn btn-primary">Yes</button>
+      <button (click)="modalRef?.hide()" class="btn btn-danger">Cancel</button>
+    </div>
+
+  </div>
+</ng-template>

@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+.ng-sidebar{
+  background: #072227;
+  color: white;
+
+}
+
+
+.ng-sidebar img {
+  margin-top: 30px;
+  width: 10vh;
+  border-radius: 50%;
+}
+
+
+.ng-sidebar span {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+

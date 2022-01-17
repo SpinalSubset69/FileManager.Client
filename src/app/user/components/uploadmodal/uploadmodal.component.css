@@ -1,0 +1,31 @@
+.modal-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  min-height: 250px;
+  border: 2px  dashed #618ac9;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active{
+  background: #b8d4fe;
+  color: black;
+  border: 2px dashed #618ac9;
+}
+
+
+
+@media (max-width: 1120px) {
+  button{
+    font-size: 12px;
+  }
+}

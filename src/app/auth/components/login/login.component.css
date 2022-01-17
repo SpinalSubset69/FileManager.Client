@@ -1,0 +1,37 @@
+
+
+.login-card{
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 25px;
+  min-width: 30vw;
+  max-width: 90vw;
+}
+
+
+.login-card label{
+  font-weight: 600;
+}
+
+.email{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form img{
+  width: 50px;
+  margin-right: 10px;
+}
+
+form input{
+  border-radius: 50px;
+}
+
+.password{
+  display:  flex;
+  justify-content: center;
+  align-items: center;
+}
+

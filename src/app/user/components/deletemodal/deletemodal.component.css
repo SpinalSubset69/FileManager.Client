@@ -1,0 +1,19 @@
+.modal-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.modal-body button{
+  margin-right: 5px;
+}
+
+@media (max-width: 500px) {
+a{
+  font-size: 12px;
+  font-weight: 600;
+}
+}

@@ -1,0 +1,26 @@
+<button (click)="openModal(template)" class="btn btn-primary">
+  <i class="fa fa-plus"></i>
+  Add Folder
+</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Folder</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form class="form-group" #f=ngForm (submit)="addFolder(f)">
+
+      <label for="name">Folder's Name:</label>
+      <input class="form-control" name="name" [(ngModel)]="folder.name" type="text">
+
+      <label for="name">Folder's Description:</label>
+      <input class="form-control" name="name" [(ngModel)]="folder.description" type="text">
+      <button type="submit" class="btn btn-primary mt-2 text-center">Add Folder</button>
+    </form>
+
+  </div>
+</ng-template>

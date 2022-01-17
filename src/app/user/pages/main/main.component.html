@@ -1,0 +1,39 @@
+<ngx-spinner  size = "large" type="pacman" >
+  <p style="font-size: 28px;">Loading...</p>
+</ngx-spinner>
+
+
+<div class="main-wrapper">
+
+  <div class="cards-container">
+
+    <div class="info-card animate__animated animate__slideInUp">
+      <span>Total Files</span>
+
+      <div class="info-details">
+        <img src="./../../../../assets/icons/archivo.png" alt="">
+        <span>{{ totalFiles }}</span>
+      </div>
+    </div>
+
+    <div class="info-card animate__animated animate__slideInUp">
+      <span>Total Folders</span>
+
+      <div class="info-details">
+        <img src="./../../../../assets/icons/carpeta.png" alt="">
+        <span>{{ totalFolders }}</span>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="chart-container">
+    <h1>Total space used: <strong>{{totalSize  }}</strong></h1>
+
+    <app-pie-chart [data]="dataToChart" ></app-pie-chart>
+
+  </div>
+  <app-folder></app-folder>
+</div>

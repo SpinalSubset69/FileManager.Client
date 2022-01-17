@@ -1,0 +1,28 @@
+
+<button (click)="openModal(template)" class="btn btn-primary">
+  <i class="fa fa-upload"></i>
+  Upload File
+</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Upload FIle</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div (click)="openInput()" class="upload-area"
+    (dragover)="onDragOver($event)"
+    (dragleave)="fileLeaved($event)"
+    (drop)="fileDropped($event)"
+    >
+      <span>Click or drag and drop your file here</span>
+
+      <input #input (change)="uploadFile(input)" id="file" type="file" hidden>
+    </div>
+
+
+  </div>
+</ng-template>

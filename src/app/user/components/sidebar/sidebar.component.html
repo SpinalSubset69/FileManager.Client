@@ -1,0 +1,107 @@
+<!-- <div *ngIf="user" class="user-info-wrapper">
+  <i (click)="hide()" style="color: white;" class="fa fa-chevron-circle-left fa-2x"></i>
+  <img src="{{ user.profileImage | profileimageurl }}" alt="">
+  <span>{{ user.userName }}</span>
+</div>
+
+
+<div *ngIf="user" class="operations-wrapper">
+  <button (click)="navigate('main')" class="operation-button">
+    <i class="fa fa-home"></i>
+    Home
+  </button>
+  <button (click)="navigate('files')" class="operation-button">
+    <i class="fa fa-archive"></i>
+    Files
+  </button>
+  <button (click)="navigate('folders')" class="operation-button">
+    <i class="fa fa-folder"></i>
+    Folders
+  </button>
+  <button class="operation-button">
+    <i class="fa fa-user"></i>
+    User
+  </button>
+</div>
+
+
+<div *ngIf="user" class="logout-wrapper">
+  <button class="logout-button" (click)="logout()">
+    <i class="fa fa-sign-out"></i>
+    Logout
+  </button>
+</div>
+ -->
+
+   <!-- Container for sidebar(s) + page content -->
+   <ng-sidebar-container *ngIf="user">
+
+    <!-- A sidebar -->
+    <ng-sidebar [(opened)]="opened">
+
+        <div class="user-info">
+          <i class="fa fa-close fa-2x" style="cursor: pointer;" closeSidebar></i>
+          <img src="{{ user.profileImage | profileimageurl }}" alt="">
+          <span>{{ user.userName }}</span>
+        </div>
+
+        <div class="sidebar-actions">
+
+          <a closeSidebar (click)="navigate('main')" class="operation-button">
+            <i class="fa fa-home"></i>
+            Home
+          </a>
+
+          <a closeSidebar (click)="navigate('files')" class="operation-button">
+            <i class="fa fa-archive"></i>
+            Files
+          </a>
+
+          <a closeSidebar (click)="navigate('folders')" class="operation-button">
+            <i class="fa fa-folder"></i>
+            Folders
+          </a>
+
+          <a closeSidebar (click)="navigate('folders')" class="operation-button">
+            <i class="fa fa-user"></i>
+            User
+          </a>
+        </div>
+
+        <button closeSidebar (click)="openModal(template)" class="logout-button">
+          <i class="fa fa-sign-out"></i>
+          Logout
+        </button>
+
+
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content>
+
+      <i (click)="toggleSidebar()" style="cursor: pointer;" class="fa fa-bars fa-2x mx-3 mt-3"></i>
+
+    </div>
+
+  </ng-sidebar-container>
+
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Logout</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <h3>Do You Want To Logout?</h3>
+      <span class="text-muted">You must login next time</span>
+
+      <div class="options">
+        <button (click)="logout()" class="btn btn-primary">Yes</button>
+        <button (click)="modalRef?.hide()" class="btn btn-danger">Cancel</button>
+      </div>
+
+    </div>
+  </ng-template>

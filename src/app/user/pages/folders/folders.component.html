@@ -1,0 +1,64 @@
+<ngx-spinner  size = "large" type="pacman" >
+  <p style="font-size: 28px;">Loading...</p>
+</ngx-spinner>
+
+
+
+
+
+<div class="folders-wrapper">
+  <div class="header">
+    <h2>Folders</h2>
+    <app-foldermodal (event)="fileEvent($event)"></app-foldermodal>
+  </div>
+  <hr />
+
+  <div class="main-content">
+    <div class="folders row">
+      <div *ngFor="let folder of folders" class="col-md-3">
+        <app-folder
+          (click)="getFolderFiles(folder.id, folder.name)"
+          [folder]="folder"
+        ></app-folder>
+      </div>
+    </div>
+
+    <div class="folders-content">
+
+      <div class="header">
+        <h2>{{ folderName }}</h2>
+        <app-deletemodal
+          [bigTitle]="'Delete Folder'"
+          [buttonText]="'Delete Folder'"
+          [title]="'Do You want to delete the folder?'"
+          [description]="'All files within will be deleted too'"
+          (event)="delete($event)"
+          *ngIf="folderId"
+          class="btn btn-danger"
+        ></app-deletemodal>
+      </div>
+      <hr />
+
+      <!-- FOLDER FILES -->
+      <div class="folder-files">
+        <div *ngIf="files.length === 0 && !files">
+          <h1>No files on folder</h1>
+        </div>
+
+        <div
+          *ngIf="files"
+          class="row folders-files drag-area"
+          (dragover)="onDragOver($event)"
+          (dragleave)="fileLeaved($event)"
+          (drop)="fileDropped($event)"
+        >
+          <div *ngFor="let file of files" class="col-md-4">
+            <app-file [file]="file" (event)="fileEvent($event)"></app-file>
+          </div>
+        </div>
+      </div>
+<!-- FOLDER FILES -->
+
+    </div>
+  </div>
+</div>

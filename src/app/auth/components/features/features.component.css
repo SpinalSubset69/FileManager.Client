@@ -1,0 +1,15 @@
+.content{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-img{
+  height: 35vh;
+  border-radius: 10px;
+}
+
+.feature-desc{
+  font-size: 28px;
+}

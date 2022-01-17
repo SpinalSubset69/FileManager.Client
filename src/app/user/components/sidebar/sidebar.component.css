@@ -1,0 +1,92 @@
+.user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  position: relative;
+}
+
+.user-info i{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+
+.sidebar-actions{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 50px;
+  width: 200px;
+}
+
+
+.operation-button {
+  padding: 15px;
+  left: 0;
+  min-width: 100px;
+  background: #35858b;
+  outline: none;
+  border: none;
+  margin-top: 20px;
+  border-radius: 0 10% 10% 0;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.operation-button:hover {
+  background: #4fbdba;
+  transition: all 0.6s ease-in-out;
+  animation: buttonWidth 0.6s ease-in-out both;
+}
+
+@keyframes buttonWidth {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 115px;
+  }
+}
+
+.logout-wrapper {
+  flex: 0.2;
+  padding-top: 200px;
+}
+
+.logout-button{
+    padding: 15px;
+    left: 0;
+    min-width: 100px;
+    background: #FF6363;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    border-radius: 0 10% 10% 0;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    animation: buttonWidth 0.6s ease-in-out both;
+  }
+
+  .modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+
+  .modal-body button{
+    margin-right: 5px;
+  }

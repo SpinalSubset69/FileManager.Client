@@ -1,0 +1,59 @@
+<ngx-spinner  size = "large" type="pacman" >
+  <p style="font-size: 28px;">Loading...</p>
+</ngx-spinner>
+
+<div class=" animate__animated animate__fadeInDownBig">
+  <h1>Login into your account</h1>
+  <div class="login-card">
+
+    <form (submit)="submitLogin(f)" class="form-group"
+    #f = ngForm>
+
+      <div class="mb-3 email">
+        <img src="./../../../../assets/icons/email.png" alt="" />
+        <div>
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <br>
+          <span *ngIf="f.submitted && f.form.controls['email'].errors" class="text-danger animate__animated animate__fadeIn">Email es Obligatorio!</span>
+          <input
+            type="email"
+            name="email"
+            required
+            email
+            [(ngModel)]="loginInfo.email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 password">
+        <img src="./../../../assets/icons/secure.png" alt="" />
+        <div>
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <br>
+          <span *ngIf="f.submitted && f.form.controls['password'].errors" class="text-danger animate__animated animate__fadeIn">Contraseña es Obligatoria!</span>
+          <input
+            type="password"
+            name="password"
+            required
+            [(ngModel)]="loginInfo.password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll encrypt your password to ensure your data.
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+  </div>
+</div>

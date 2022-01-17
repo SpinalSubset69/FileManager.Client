@@ -1,0 +1,58 @@
+<div *ngIf="file" class="file-card shadow-lg p-2 animate__animated animate__fadeIn">
+ <div class="top-card">
+   <div class="img-card">
+    <img src="{{ file.fileExtension | extensionfile}}" alt="...">
+   </div>
+
+
+<!-- DROPDOWN OPTIONS-->
+   <div class="options-card">
+    <div class="btn-group drop-actions" dropdown container="body">
+      <i class="fa fa-bars" id="button-basic" dropdownToggle type="button"  aria-controls="dropdown-basic"></i>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item" href="https://localhost:7006/download/file/{{ file.id }}"download>Download</a></li>
+        <li (click)="deleteFile()" role="menuitem"><button class="dropdown-item">Delete</button></li>
+        <li (click)="openModal(template)" role="menuitem"><button class="dropdown-item">Add to Folder</button></li>
+      </ul>
+    </div>
+   </div>
+<!-- DROPDOWN OPTIONS-->
+ </div>
+
+  <div class="text-center">
+    <p class="card-text"><strong>{{ file.fileName  | filenameshortener : file.fileExtension }} </strong></p>
+    <p class="card-text">Size on disk: <br> <strong>{{ file.fileSize | sizeondisk }}</strong></p>
+    <p class="card-text">Created at: <br> <strong>{{ file.created_At | date }}</strong></p>
+  </div>
+
+</div>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add File To Folder</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div *ngIf="folders.length === 0" class="text-center">
+      <h1>No folders created yet</h1>
+    </div>
+
+    <div *ngIf="folders.length > 0" class="folders text-center">
+      <h3>Folders</h3>
+      <hr>
+
+      <div  class="row">
+        <div *ngFor="let folder of folders" class="col-md-4 g-2">
+          <app-folder (click)="addFileToFolder(folder.id)" [folder]="folder"></app-folder>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ng-template>

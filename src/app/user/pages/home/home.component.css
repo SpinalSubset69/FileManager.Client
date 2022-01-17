@@ -1,0 +1,30 @@
+.content-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar-wrapper {
+  height: 100vh;
+  width: 200px;
+  position: absolute;
+  margin-top: 10px;
+}
+
+.main-content {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.line-separator {
+  height: 10px;
+  background: #072227;
+}
+
+
+@media (max-width: 1500px) {
+
+}

@@ -1,0 +1,18 @@
+<ngx-spinner  size = "large" type="pacman" >
+  <p style="font-size: 28px;">Loading...</p>
+</ngx-spinner>
+
+
+
+<div class="content-container">
+
+  <div class="sidebar-wrapper">
+    <app-sidebar [user]="user"></app-sidebar>
+  </div>
+
+  <div class="main-content">
+    <div  class="line-separator"></div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

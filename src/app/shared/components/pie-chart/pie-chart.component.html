@@ -1,0 +1,13 @@
+<ngx-charts-pie-chart *ngIf="data"
+  [view]="view"
+  [results]="data"
+  [gradient]="gradient"
+  [legend]="showLegend"
+  [labels]="showLabels"
+  [legendPosition]="legendPosition"
+  [doughnut]="isDoughnut"
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)"
+  >
+</ngx-charts-pie-chart>

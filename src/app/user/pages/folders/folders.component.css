@@ -1,0 +1,65 @@
+.folders-wrapper {
+  height: 100vh;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.folders {
+  flex: 0.5;
+  height: 100%;
+  padding: 25px;
+  overflow: scroll;
+}
+
+.folders-content {
+  flex: 0.5;
+  height: 100%;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.folders-files {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(10, 1fr); */
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  width: 100%;
+}
+
+.active {
+  background: #b8d4fe;
+  color: black;
+  border: 2px dashed #618ac9;
+}
+
+@media (max-width: 1320px) {
+  .main-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .folders {
+    flex: 0.4;
+  }
+  .folders-content {
+    flex: 0.6;
+  }
+  .folders-files {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
