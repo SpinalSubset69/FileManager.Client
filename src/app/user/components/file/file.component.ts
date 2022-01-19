@@ -6,6 +6,7 @@ import { Folder } from 'src/app/shared/interfaces/folder';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { getFileType } from 'src/app/shared/util/files.filter';
+import { ToastsService } from 'src/app/services/toasts.service';
 
 @Component({
   selector: 'app-file',
@@ -16,11 +17,14 @@ export class FileComponent implements OnInit {
   @Input() file!:UserFile;
   @Output() event = new EventEmitter<string>();
 
+  @ViewChild('download')
+  download!:ElementRef;
+
   eventSubject:Subject<void> = new Subject<void>();
   modalRef?: BsModalRef;
   folders: Folder[] = [];
 
-  constructor(private userService:UserService, private modalService: BsModalService, private toastr:ToastrService) { }
+  constructor(private userService:UserService, private modalService: BsModalService, private toasts:ToastsService) { }
 
   ngOnInit(): void {
   }
@@ -29,9 +33,7 @@ export class FileComponent implements OnInit {
     const type = getFileType(this.file.fileExtension);
 
     if(type.includes('docs') || type.includes('executables')){
-      const download = document.getElementById('download');
-      console.log(download);
-      download?.click();
+      this.download.nativeElement.click();
       return;
     }
 
@@ -56,5 +58,10 @@ export class FileComponent implements OnInit {
       this.modalRef?.hide();
       this.event.emit('inserted')
     });
+  }
+
+  shareLink(){
+    navigator.clipboard.writeText(this.download.nativeElement.getAttribute('href'));
+    this.toasts.SuccessToastr('Download link copied to clipboard!', 'Share');
   }
 }

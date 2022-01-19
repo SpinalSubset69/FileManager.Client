@@ -20,7 +20,6 @@ export class errorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log(error);
         let errorMsg = '';
         if (error.error instanceof ErrorEvent) {
           //CLIENT SIDE ERRORS

@@ -1,6 +1,6 @@
 
 <div *ngIf="file" class="file-card shadow-lg p-2 animate__animated animate__fadeIn">
-  <a hidden id="download"  href="{{ file.id |download }}" download></a>
+  <a #download hidden id="download"  href="{{ file.id |download }}" download></a>
 
  <div class="top-card">
    <div class="img-card">
@@ -19,6 +19,7 @@
         </li>
         <li (click)="deleteFile()" role="menuitem"><button class="dropdown-item">Delete</button></li>
         <li (click)="openModal(template)" role="menuitem"><button class="dropdown-item">Add to Folder</button></li>
+        <li (click)="shareLink()" role="menuitem"><button class="dropdown-item">Share Link</button></li>
       </ul>
     </div>
    </div>
