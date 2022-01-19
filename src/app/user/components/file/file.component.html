@@ -1,7 +1,10 @@
+
 <div *ngIf="file" class="file-card shadow-lg p-2 animate__animated animate__fadeIn">
+  <a hidden id="download"  href="{{ file.id |download }}" download></a>
+
  <div class="top-card">
    <div class="img-card">
-    <img src="{{ file.fileExtension | extensionfile}}" alt="...">
+    <img (click)="openPreview()" src="{{ file.fileExtension | extensionfile}}" alt="...">
    </div>
 
 
@@ -11,7 +14,9 @@
       <i class="fa fa-bars" id="button-basic" dropdownToggle type="button"  aria-controls="dropdown-basic"></i>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
           role="menu" aria-labelledby="button-basic">
-        <li role="menuitem"><a class="dropdown-item" href="{{ file.id |download }}" download>Download</a></li>
+        <li  role="menuitem">
+          <a class="dropdown-item" href="{{ file.id |download }}" download>Download</a>
+        </li>
         <li (click)="deleteFile()" role="menuitem"><button class="dropdown-item">Delete</button></li>
         <li (click)="openModal(template)" role="menuitem"><button class="dropdown-item">Add to Folder</button></li>
       </ul>
@@ -20,7 +25,7 @@
 <!-- DROPDOWN OPTIONS-->
  </div>
 
-  <div class="text-center">
+  <div (click)="openPreview()" class="text-center">
     <p class="card-text"><strong>{{ file.fileName  | filenameshortener : file.fileExtension }} </strong></p>
     <p class="card-text">Size on disk: <br> <strong>{{ file.fileSize | sizeondisk }}</strong></p>
     <p class="card-text">Created at: <br> <strong>{{ file.created_At | date }}</strong></p>
@@ -60,3 +65,7 @@
 
   </div>
 </ng-template>
+
+<app-filepreviewmodal [event]="eventSubject.asObservable()" [file]="file"></app-filepreviewmodal>
+
+

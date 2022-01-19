@@ -60,3 +60,24 @@ export const queryOnFiles = ( userFiles:UserFile[] ,query:string):FilesFiltered 
     )
   } as FilesFiltered;
 }
+
+
+export const getFileType = (fileExtension:string):string => {
+  if(fileExtension.includes('png') || fileExtension.includes('jpg') || fileExtension.includes('jpeg')){
+    return 'images';
+  }
+
+  if(fileExtension.includes('mp4') || fileExtension.includes('3gp') || fileExtension.includes('avi')){
+    return 'videos';
+  }
+
+  if(fileExtension.includes('exe') || fileExtension.includes('msi') ){
+   return 'executables';
+  }
+
+  if(fileExtension.includes('docx') ||fileExtension.includes('pdf') || fileExtension.includes('ppt') || fileExtension.includes('txt')){
+    return 'docs';
+  }
+
+  return 'undefined';
+}

@@ -25,6 +25,8 @@ import { SidebarModule } from 'ng-sidebar';
 import { UploadmodalComponent } from './components/uploadmodal/uploadmodal.component';
 import { DownloadPipe } from './pipes/download.pipe';
 import { UserComponent } from './pages/user/user.component';
+import { FilepreviewmodalComponent } from './components/filepreviewmodal/filepreviewmodal.component';
+import { PreviewurlPipe } from './pipes/previewurl.pipe';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { UserComponent } from './pages/user/user.component';
     DeletemodalComponent,
     UploadmodalComponent,
     DownloadPipe,
-    UserComponent
+    UserComponent,
+    FilepreviewmodalComponent,
+    PreviewurlPipe
   ],
   imports: [
     CommonModule,

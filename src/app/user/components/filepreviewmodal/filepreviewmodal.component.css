@@ -1,0 +1,22 @@
+.modal-body{
+  height: 80vh;
+  padding: 20px;
+}
+
+.image{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.image img{
+  width: 100%;
+}
+
+.image video{
+  width: 100%;
+}
+
+

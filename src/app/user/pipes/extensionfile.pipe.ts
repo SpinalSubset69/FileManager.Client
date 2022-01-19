@@ -16,7 +16,7 @@ export class ExtensionfilePipe implements PipeTransform {
       mimeType = 'video.png';
     }
 
-    if(extension.includes("docx")){
+    if(extension.includes("docx") || extension.includes("txt")){
       mimeType = 'doc.png';
     }
 
