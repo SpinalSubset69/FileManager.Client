@@ -12,12 +12,12 @@
 
     <div class="query">
       <span>Query on Files</span>
-    <input #q (keydown)="queryOnFiles(q.value)" class="mx-2" type="text">
+    <input #q (keydown)="queryOnFiles(q.value)"  class="mx-2" type="text">
     </div>
   </div>
 
 
-  <div class="files"
+  <div *ngIf="files.length > 0" class="files"
   (dragover)="onDragOver($event)"
   (dragleave)="fileLeaved($event)"
   (drop)="fileDropped($event)"
@@ -51,6 +51,11 @@
       </div>
     </div>
 
+  </div>
+
+
+  <div *ngIf="files.length === 0" class="text-centermt-5">
+    <h1>No Files Uploaded Yet!!</h1>
   </div>
 
 <!--

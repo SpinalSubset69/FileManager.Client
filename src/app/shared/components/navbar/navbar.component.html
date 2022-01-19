@@ -1,4 +1,4 @@
-<div>
+<div class="animate__animated animate__fadeInRight">
   <h3 class="float-md-start mb-0">File Manager</h3>
   <nav class="nav nav-masthead justify-content-center float-md-end">
 
@@ -6,11 +6,6 @@
     <a *ngIf="!(isLogged$ | async)" class="nav-link" (click)="features()" id="features">Features</a>
 
     <a *ngIf="!(isLogged$ | async)" class="nav-link" (click)="contact()" id="contact" >Contact</a>
-
-    <a *ngIf="(isLogged$ | async)" class="nav-link" class="btn btn-danger mx-3" (click)="logout()">
-      <i class="fa fa-sign-out"></i>
-      Logout
-    </a>
 
     <a *ngIf="!(isLogged$ | async)" class="nav-link" (click)="login()" id="login">Login</a>
     <a *ngIf="!(isLogged$ | async)" class="nav-link" (click)="signup()" id="signup">SignUp</a>

@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { FilesComponent } from './components/files/files.component';
 import { MainComponent } from './pages/main/main.component';
 import { FoldersComponent } from './pages/folders/folders.component';
+import { UserComponent } from './pages/user/user.component';
 
 const ROUTES:Routes = [
   {path: '',
@@ -16,8 +17,8 @@ const ROUTES:Routes = [
       [
         {path:'files', component: FilesComponent},
         {path:'main', component: MainComponent},
-
         {path:'folders', component: FoldersComponent},
+        {path:'user', component: UserComponent},
 
       ]
     },

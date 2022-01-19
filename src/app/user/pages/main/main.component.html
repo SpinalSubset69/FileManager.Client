@@ -3,11 +3,13 @@
 </ngx-spinner>
 
 
-<div class="main-wrapper">
+<div *ngIf="user" class="main-wrapper">
 
   <div class="cards-container">
 
-    <div class="info-card animate__animated animate__slideInUp">
+    <h1>Welcome <strong>{{ user.userName | uppercase}}</strong></h1>
+
+    <div class="info-card rounded shadow-lg p-3 mb-5 bg-body rounded animate__animated animate__slideInUp">
       <span>Total Files</span>
 
       <div class="info-details">
@@ -16,7 +18,7 @@
       </div>
     </div>
 
-    <div class="info-card animate__animated animate__slideInUp">
+    <div class="info-card rounded shadow-lg p-3 mb-5 bg-body rounded animate__animated animate__slideInUp">
       <span>Total Folders</span>
 
       <div class="info-details">
@@ -29,11 +31,12 @@
 
 
 
-  <div class="chart-container">
-    <h1>Total space used: <strong>{{totalSize  }}</strong></h1>
+  <div *ngIf="totalSize != '0.00 mb' " class="chart-container animate__animated animate__fadeInDown">
 
+    <div class="chart rounded">
+      <h1>Total space used: <strong>{{totalSize  }} / 500mb</strong></h1>
     <app-pie-chart [data]="dataToChart" ></app-pie-chart>
+    </div>
 
   </div>
-  <app-folder></app-folder>
 </div>

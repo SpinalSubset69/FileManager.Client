@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  BehaviorSubject, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { BaseErrorResponse, BaseResponse } from '../shared/interfaces/base-response';
 import { Session } from '../shared/interfaces/session';
+import { User } from '../shared/interfaces/user';
 import { Login } from '../shared/models/login';
 import { SignUp } from '../shared/models/signup';
 
@@ -14,9 +15,16 @@ import { SignUp } from '../shared/models/signup';
 export class AuthService {
   private loginSource = new BehaviorSubject<boolean>(false);
   public isLogged$ = this.loginSource.asObservable();
-  baseApiUri = environment.baseApiUri;
 
-  constructor(private http:HttpClient) { }
+  baseApiUri = '';
+
+  constructor(private http:HttpClient) {
+    if(environment.production){
+      this.baseApiUri =environment.prodApi;
+    }else{
+      this.baseApiUri = environment.devApi;
+    }
+   }
 
   login(info:Login): Observable<Session | string>{
     return this.http.post<BaseResponse | BaseErrorResponse>(`${this.baseApiUri}/login`, info).pipe(
@@ -38,8 +46,12 @@ export class AuthService {
     );
   }
 
-  signUp(info:SignUp){
-    return this.http.post(`${this.baseApiUri}/signup`, info);
+  signUp(info:SignUp):Observable<User>{
+    return this.http.post<BaseResponse>(`${this.baseApiUri}/signup`, info).pipe(
+      map(resp => {
+        return resp.value.data as User;
+      })
+    );
   }
 
 
@@ -55,7 +67,6 @@ export class AuthService {
     const dateToExpire = new Date();
     dateToExpire.setTime(Number(expiresIn));
 
-    console.log(dateToExpire > new Date())
     this.loginSource.next(dateToExpire > new Date());
 
     return dateToExpire > new Date();

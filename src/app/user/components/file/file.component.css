@@ -4,10 +4,10 @@
 
   max-width: 150px;
   max-height: 260px;
-  background: #191919;
-  color: white;
+  background: var(--background-color);
+  color: var(--fore-white);
   padding: 5px;
-
+  /* color: #191919; */
   /* min-width: 150px;
   min-height: 260px; */
 
@@ -48,19 +48,25 @@
 .modal-body{
   max-height: 80vh;
   min-height: 40vh;
+
+}
+.folders-content{
+  height: 100%;
+  width: 100%;
+
 }
 
 .folders{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
 }
-
 
 @media (max-width: 500px) {
   .file-card{
     font-size: 12px;
-    width: 80px;
+    width: 100px;
     height: 200px;
   }
 

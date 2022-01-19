@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/shared/interfaces/user';
 import { UserFile } from 'src/app/shared/interfaces/userFile';
 import { filterFiles } from 'src/app/shared/util/files.filter';
 
@@ -13,6 +14,7 @@ export class MainComponent implements OnInit {
   files:UserFile[] = [];
   totalFolders:number = 0;
   dataToChart:any[] = [];
+  user!:User;
 
   totalSize:string = '';
   totalFiles:number = 0;
@@ -26,10 +28,14 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
 
-    this.userService.getUserFiles().subscribe(resp => {
+    this.userService.getuser().subscribe(resp => {
+      this.user = resp;
+      this.calculateTotalSize();
+    });
+
+    this.userService.getAllUserFiles().subscribe(resp => {
       this.files = resp;
       this.totalFiles = this.files.length;
-      this.calculateTotalSize();
       this.delegateFiles();
     });
 
@@ -73,8 +79,8 @@ export class MainComponent implements OnInit {
 
   private calculateTotalSize(){
     let size:number = 0;
-    this.files.forEach(x => size += x.fileSize);
-    const sizeOnDisk = size / 1048576;
+    const sizeOnDisk = Number(this.user.spaceInUse) / 1048576;
     this.totalSize = `${sizeOnDisk.toFixed(2)} mb`;
+    console.log(this.totalSize)
   }
 }

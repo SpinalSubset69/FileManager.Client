@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastsService } from 'src/app/services/toasts.service';
 import { Login } from 'src/app/shared/models/login';
 
 @Component({
@@ -18,14 +19,13 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toasts:ToastsService
   ) {
     this.loginInfo = new Login('', '');
   }
 
   ngOnInit(): void {
     if (this.authService.validateSession()) {
-      console.log(this.authService.validateSession());
       this.router.navigateByUrl('/user/home');
     }
   }
@@ -41,27 +41,15 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
 
         if (typeof respo === 'string') {
-          this.toastr.error(respo, 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
+          this.toasts.ErrorToastr(respo, 'Error');
           return;
         }
-
+        this.spinner.hide();
         this.router.navigateByUrl('/user/home');
       },
       (err) => {
         this.spinner.hide();
-
-        if (err.message.includes('Http failure')) {
-          this.toastr.error(
-            'Cannot stablish conection to the server',
-            'Connection',
-            {
-              positionClass: 'toast-top-right',
-            }
-          );
-        }
-        console.log(err);
+        this.toasts.ErrorToastr(err, 'Error');
       }
     );
   }

@@ -1,0 +1,39 @@
+<div *ngIf="user" class="user-wrapper">
+  <div class="user-card  p-3 mb-5 bg-body rounded text-center animate__animated animate__slideInDown">
+    <div class="header-wrapper">
+      <h1>
+        <strong>User Info</strong>
+      </h1>
+      <img src="{{ user.profileImage | profileimageurl }}" />
+    </div>
+
+    <div class="user-info">
+      <div class="info-item">
+        <img src="./../../../../assets/icons/userPage.png" alt="" />
+
+        <div class="info-text">
+          <span> {{ user.userName }} </span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <img src="./../../../../assets/icons/emailPage.png" alt="" />
+
+        <div class="info-text">
+          <span> {{ user.email }} </span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <img src="./../../../../assets/icons/grafico-de-torta.png" alt="" />
+
+        <div class="info-text">
+          <span> {{ spaceInUse | sizeondisk }} / 500mb </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+ -->
+</div>

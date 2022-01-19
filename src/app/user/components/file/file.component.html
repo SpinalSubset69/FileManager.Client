@@ -11,7 +11,7 @@
       <i class="fa fa-bars" id="button-basic" dropdownToggle type="button"  aria-controls="dropdown-basic"></i>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
           role="menu" aria-labelledby="button-basic">
-        <li role="menuitem"><a class="dropdown-item" href="https://localhost:7006/download/file/{{ file.id }}"download>Download</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="{{ file.id |download }}" download>Download</a></li>
         <li (click)="deleteFile()" role="menuitem"><button class="dropdown-item">Delete</button></li>
         <li (click)="openModal(template)" role="menuitem"><button class="dropdown-item">Add to Folder</button></li>
       </ul>
@@ -38,18 +38,22 @@
   </div>
   <div class="modal-body">
 
-    <div *ngIf="folders.length === 0" class="text-center">
-      <h1>No folders created yet</h1>
-    </div>
+    <div class="folders-content">
 
-    <div *ngIf="folders.length > 0" class="folders text-center">
-      <h3>Folders</h3>
-      <hr>
+      <div *ngIf="folders.length === 0" class="text-center">
+        <h1>No folders created yet</h1>
+      </div>
 
-      <div  class="row">
-        <div *ngFor="let folder of folders" class="col-md-4 g-2">
-          <app-folder (click)="addFileToFolder(folder.id)" [folder]="folder"></app-folder>
+      <div *ngIf="folders.length > 0" class="">
+        <h3>Folders</h3>
+        <hr>
+
+        <div  class="row folders">
+          <div *ngFor="let folder of folders" class="">
+            <app-folder (click)="addFileToFolder(folder.id)" [folder]="folder"></app-folder>
+          </div>
         </div>
+
       </div>
 
     </div>

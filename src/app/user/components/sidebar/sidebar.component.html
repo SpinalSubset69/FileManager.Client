@@ -40,35 +40,35 @@
     <ng-sidebar [(opened)]="opened">
 
         <div class="user-info">
-          <i class="fa fa-close fa-2x" style="cursor: pointer;" closeSidebar></i>
+          <i (click)="barsEntrance()" class="fa fa-close fa-2x" style="cursor: pointer;" closeSidebar></i>
           <img src="{{ user.profileImage | profileimageurl }}" alt="">
           <span>{{ user.userName }}</span>
         </div>
 
         <div class="sidebar-actions">
 
-          <a closeSidebar (click)="navigate('main')" class="operation-button">
+          <a (click)="barsEntrance()" closeSidebar (click)="navigate('main')" class="operation-button">
             <i class="fa fa-home"></i>
             Home
           </a>
 
-          <a closeSidebar (click)="navigate('files')" class="operation-button">
+          <a (click)="barsEntrance()" closeSidebar (click)="navigate('files')" class="operation-button">
             <i class="fa fa-archive"></i>
             Files
           </a>
 
-          <a closeSidebar (click)="navigate('folders')" class="operation-button">
+          <a (click)="barsEntrance()" closeSidebar (click)="navigate('folders')" class="operation-button">
             <i class="fa fa-folder"></i>
             Folders
           </a>
 
-          <a closeSidebar (click)="navigate('folders')" class="operation-button">
+          <a (click)="barsEntrance()" closeSidebar (click)="navigate('user')" class="operation-button">
             <i class="fa fa-user"></i>
             User
           </a>
         </div>
 
-        <button closeSidebar (click)="openModal(template)" class="logout-button">
+        <button (click)="barsEntrance()" closeSidebar (click)="openModal(template)" class="logout-button">
           <i class="fa fa-sign-out"></i>
           Logout
         </button>
@@ -79,7 +79,17 @@
     <!-- Page content -->
     <div ng-sidebar-content>
 
-      <i (click)="toggleSidebar()" style="cursor: pointer;" class="fa fa-bars fa-2x mx-3 mt-3"></i>
+     <!--  <i (click)="toggleSidebar()" style="cursor: pointer; color: #072227;" class="fa fa-bars fa-2x mx-3 mt-3"></i> -->
+
+    <div (click)="toggleSidebar()" class="fa-bars">
+
+      <div #bar1 id="bar1" class="bar1"></div>
+
+      <div #bar2 id="bar2" class="bar2"></div>
+
+      <div #bar3 id="bar3" class="bar3"> </div>
+  </div>
+
 
     </div>
 

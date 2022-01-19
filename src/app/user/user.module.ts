@@ -23,6 +23,8 @@ import { FoldernameshortenerPipe } from './pipes/foldernameshortener.pipe';
 import { DeletemodalComponent } from './components/deletemodal/deletemodal.component';
 import { SidebarModule } from 'ng-sidebar';
 import { UploadmodalComponent } from './components/uploadmodal/uploadmodal.component';
+import { DownloadPipe } from './pipes/download.pipe';
+import { UserComponent } from './pages/user/user.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { UploadmodalComponent } from './components/uploadmodal/uploadmodal.compo
     FoldermodalComponent,
     FoldernameshortenerPipe,
     DeletemodalComponent,
-    UploadmodalComponent
+    UploadmodalComponent,
+    DownloadPipe,
+    UserComponent
   ],
   imports: [
     CommonModule,

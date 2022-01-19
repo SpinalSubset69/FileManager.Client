@@ -21,8 +21,7 @@ export class HomeComponent implements OnInit {
     this.userService.getuser().subscribe((resp) => {
       this.user = resp;
     });
-
-    this.router.navigateByUrl('/user/home/main');
     this.spinner.hide();
+    this.router.navigateByUrl('/user/home/main');
   }
 }

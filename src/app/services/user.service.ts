@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { BaseErrorResponse, BaseResponse } from '../shared/interfaces/base-response';
 import { Folder } from '../shared/interfaces/folder';
 import { User } from '../shared/interfaces/user';
@@ -16,25 +16,45 @@ import { FolderModel } from '../shared/models/folder';
 })
 export class UserService {
 
-  baseApiUri = environment.baseApiUri;
+  baseApiUri = '';
 
-  public pageSize:number = 12;
-  public pageIndex:number = 1;
   public query:string = "";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    if(environment.production){
+      this.baseApiUri =environment.prodApi;
+    }else{
+      this.baseApiUri = environment.devApi;
+    }
+  }
 
   getuser(): Observable<User>{
     return this.http.get<BaseResponse>(`${this.baseApiUri}/user`).pipe(
       map(resp => {
-        return resp.value.data as User
+        const user:User = resp.value.data as User;
+        console.log('Lo vas a lograr, seras un genial programador :33')
+        if(user ===undefined){
+          console.log('Lo vas a lograr, seras un genial programador :33')
+        }
+        return user
       })
     );
   }
 
   getUserFiles():Observable<UserFile[]>{
-    console.log(this.pageIndex);
-    return this.http.get<BaseResponse>(`${this.baseApiUri}/userfiles`,{
+    return this.http.get<BaseResponse>(`${this.baseApiUri}/userfilesoutfolder`,{
+    params: this.getParams()
+    }).pipe(
+      map(resp => {
+        console.log(resp);
+        return resp.value.data as UserFile[];
+      })
+    )
+  }
+
+
+  getAllUserFiles():Observable<UserFile[]>{
+    return this.http.get<BaseResponse>(`${this.baseApiUri}/files`,{
     params: this.getParams()
     }).pipe(
       map(resp => {
@@ -42,6 +62,7 @@ export class UserService {
       })
     )
   }
+
 
   uploadFile(file:FileUploadRequest):Observable<UserFile | string>{
     return this.http.post<BaseResponse | BaseErrorResponse>(`${this.baseApiUri}/uploadfile`, file).pipe(
@@ -108,10 +129,12 @@ export class UserService {
     return this.http.delete(`${this.baseApiUri}/folder/${folderId}`);
   }
 
+  uploadUserImage(id:number, file:FileUploadRequest){
+    return this.http.post(`${this.baseApiUri}/userimage/${id}`, file);
+  }
+
   getParams():HttpParams{
     const paramsForRequest = {
-      pageIndex: this.pageIndex,
-      pageSize: this.pageSize,
       query: this.query
     }
     const params:HttpParamsOptions = {};

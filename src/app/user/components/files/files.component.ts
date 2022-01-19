@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastsService } from 'src/app/services/toasts.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserFile } from 'src/app/shared/interfaces/userFile';
 import { FileUploadRequest } from 'src/app/shared/models/fileUploadRequest';
-import { filterFiles } from 'src/app/shared/util/files.filter';
+import { filterFiles, queryOnFiles } from 'src/app/shared/util/files.filter';
 import { processFile } from 'src/app/shared/util/processFile';
 
 @Component({
@@ -22,6 +22,7 @@ export class FilesComponent implements OnInit {
   videos: UserFile[] = [];
   docs: UserFile[] = [];
   executables: UserFile[] = [];
+
   constructor(
     private userService: UserService,
     private spinner: NgxSpinnerService,
@@ -84,16 +85,8 @@ export class FilesComponent implements OnInit {
 
   queryOnFiles(q: string) {
     this.spinner.show();
-    if (q.length === 0) {
-      this.spinner.hide();
-      this.getFiles();
-    }
-
-    this.userService.queryOnFiles(q).subscribe((resp) => {
-      this.files = resp;
-      this.delegateFiles();
-      this.spinner.hide();
-    });
+    this.delegateQueyOnFiles(q);
+    this.spinner.hide();
   }
 
   uploadFile(file:FileUploadRequest | null){
@@ -126,7 +119,15 @@ export class FilesComponent implements OnInit {
   }
 
   private delegateFiles() {
-    var filesFiltered = filterFiles(this.files);
+    const filesFiltered = filterFiles(this.files);
+    this.docs = filesFiltered.docs;
+    this.images = filesFiltered.images;
+    this.videos = filesFiltered.videos;
+    this.executables = filesFiltered.executables;
+  }
+
+  private delegateQueyOnFiles(query:string){
+    const filesFiltered = queryOnFiles(this.files, query);
     this.docs = filesFiltered.docs;
     this.images = filesFiltered.images;
     this.videos = filesFiltered.videos;

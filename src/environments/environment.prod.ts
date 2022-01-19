@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true ,
+  prodApi: 'https://spinalfilemanager.azurewebsites.net',
+  devApi: 'https://localhost:7006'
 };

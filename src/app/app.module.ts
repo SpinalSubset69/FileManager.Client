@@ -10,6 +10,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuhtInterceptor } from './shared/httpInterceptors/authInterceptor';
+import { errorInterceptor } from './shared/httpInterceptors/errorInterceptor';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuhtInterceptor } from './shared/httpInterceptors/authInterceptor';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuhtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: errorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

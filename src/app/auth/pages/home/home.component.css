@@ -1,7 +1,7 @@
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
-  color: #333;
+  color: #191919;
   text-shadow: none; /* Prevent inheritance from `body` */
 }
 
@@ -32,4 +32,10 @@ body {
 .cover-container {
   /* max-width: 42em; */
   max-width: 75em;
+}
+
+
+.main-container{
+  background-color: var(--background-color);
+
 }

@@ -3,6 +3,9 @@
   padding: 50px;
   display: flex;
   flex-direction: column;
+  background: var(--fore-white) ;
+  color: var(--background-color);
+  overflow: scroll;
 }
 
 .header {
@@ -55,11 +58,17 @@
 @media (max-width: 500px) {
   .folders {
     flex: 0.4;
+    gap: 20px;
   }
   .folders-content {
     flex: 0.6;
   }
   .folders-files {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header h2{
+    font-size: 14px;
+    font-weight: 600;
   }
 }

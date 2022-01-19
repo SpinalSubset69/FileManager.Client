@@ -2,6 +2,9 @@
   height: 100vh;
   padding: 50px;
   width: 100vw;
+  overflow: scroll;
+  background: var(--fore-white);
+  color: var(--background-color);
 }
 
 .files{

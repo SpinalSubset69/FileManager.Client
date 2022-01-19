@@ -4,6 +4,7 @@ export interface User{
   email:string;
   created_At: Date;
   profileImage:string;
+  spaceInUse:string;
 }
 
 

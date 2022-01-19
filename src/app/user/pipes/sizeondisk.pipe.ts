@@ -9,5 +9,4 @@ export class SizeondiskPipe implements PipeTransform {
     const sizeondisk = (size / 1048576);
     return `${sizeondisk.toFixed(2)} mb`;
   }
-
 }
